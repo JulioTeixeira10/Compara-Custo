@@ -29,21 +29,24 @@ s = 0
 for id in produtos1:
     if id in produtos2:
         if produtos1[id] != produtos2[id]:
-            print(f"Diferença encontrada: ID: {id} = {produtos1[id]} != {produtos2[id]}")
-            i += 1
+            q1, q2 = float(produtos1[id]), float(produtos2[id])
+            diff = round(q2 - q1, 3)
+            if diff > 0.01:
+                print(f"Diferença -> [{diff}]: ID: {id} = {produtos1[id]} != {produtos2[id]}")
+                i += 1
+            else:
+                pass
         else:
             d += 1
-            i += 1
     else:
         print(f"Produto não encontrado no outro arquivo: ID = {id}")
         s += 1
-        i += 1
 
 if d == len(produtos1):
     print("Não há diferenças de preço entre os dois arquivos.")
 else:
     print("\n")
-    print(f"Foram encontradas {len(produtos1) - d} diferenças entre os dois arquivos.")
+    print(f"Foram encontradas {i} diferenças entre os dois arquivos.")
 
 if s == 0:
     pass
