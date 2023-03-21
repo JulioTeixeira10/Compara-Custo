@@ -25,6 +25,7 @@ else:
 
 i = 0
 d = 0
+s = 0
 for id in produtos1:
     if id in produtos2:
         if produtos1[id] != produtos2[id]:
@@ -34,7 +35,8 @@ for id in produtos1:
             d += 1
             i += 1
     else:
-        print("Produto não encontrado no outro arquivo")
+        print(f"Produto não encontrado no outro arquivo: ID = {id}")
+        s += 1
         i += 1
 
 if d == len(produtos1):
@@ -42,3 +44,8 @@ if d == len(produtos1):
 else:
     print("\n")
     print(f"Foram encontradas {len(produtos1) - d} diferenças entre os dois arquivos.")
+
+if s == 0:
+    pass
+else:
+    print(f"Exitem {s} produtos na lista 1 que não foram encontrados na lista 2")
