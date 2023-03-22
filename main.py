@@ -2,6 +2,8 @@ with open("C:\\Users\\Usefr\\Desktop\\ComparaPreço\\texto1.txt") as t1:
     produtos1 = {}
     n = 0
     for row in t1:
+        if not row.endswith('\n'):
+            row += '\n'
         idproduto = row[0:7]
         quantidade = float(row[8:-1].strip())
         produtos1[idproduto] = quantidade
@@ -11,6 +13,8 @@ with open("C:\\Users\\Usefr\\Desktop\\ComparaPreço\\texto2.txt") as t2:
     produtos2 = {}
     n = 0
     for row in t2:
+        if not row.endswith('\n'):
+            row += '\n'
         idproduto = row[0:7]
         quantidade = float(row[8:-1].strip())
         produtos2[idproduto] = quantidade
@@ -31,7 +35,7 @@ for id in produtos1:
         if produtos1[id] != produtos2[id]:
             q1, q2 = float(produtos1[id]), float(produtos2[id])
             diff = round(q2 - q1, 3)
-            if diff > 0.01:
+            if diff > 0.01 or diff < 0:
                 print(f"Diferença -> [{diff}]: ID: {id} = {produtos1[id]} != {produtos2[id]}")
                 i += 1
             else:
